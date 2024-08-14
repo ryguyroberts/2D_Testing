@@ -18,9 +18,11 @@ shape = SubResource("CircleShape2D_ve5fo")
 
 [node name="LaserDelay" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="GrenadeDelay" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="LaserDelay" to="." method="_on_laser_delay_timeout"]
 [connection signal="timeout" from="GrenadeDelay" to="." method="_on_grenade_delay_timeout"]
