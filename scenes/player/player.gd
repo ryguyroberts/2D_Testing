@@ -4,7 +4,7 @@ var can_laser: bool = true;
 var can_grenade: bool = true;
 
 signal laser(position)
-signal grenade
+signal grenade(position)
 
 func _process(_delta):
 	
@@ -26,10 +26,11 @@ func _process(_delta):
 	
 	# grenade shooting input
 	if Input.is_action_pressed("secondary ability") and can_grenade:
+		var pos = $LaserStartPositions.get_children()[0].global_position
 		# Grenade shoot delay
 		can_grenade = false
 		$GrenadeDelay.start()
-		grenade.emit()
+		grenade.emit(pos)
 
 
 func _on_laser_delay_timeout():
