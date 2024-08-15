@@ -10,9 +10,10 @@ func _on_gate_player_entered_gate():
 	print("player has entered gate")
 
 
-func _on_player_grenade(pos):
-	var grenade = grenade_scene.instantiate()
+func _on_player_grenade(pos, direction):
+	var grenade = grenade_scene.instantiate() as RigidBody2D
 	grenade.position = pos
+	grenade.linear_velocity = direction * 100
 	$Projectiles.add_child(grenade)
 
 
