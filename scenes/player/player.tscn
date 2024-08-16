@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh5adl7sabwft"]
+[gd_scene load_steps=5 format=3 uid="uid://dh5adl7sabwft"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_hyyy4"]
 [ext_resource type="Texture2D" uid="uid://by7lh5dvvsjld" path="res://resources/graphics/player/player.png" id="1_xe6js"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ve5fo"]
 radius = 62.0081
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ci27t"]
+polygon = PackedVector2Array(1, -61, 24, -61, 33, -57, 36, -49, 43, -45, 45, -42, 49, -33, 56, -29, 62, -26, 66, -22, 72, -16, 78, -12, 81, -11, 90, -11, 96, -8, 101, -5, 108, -3, 114, -2, 117, 1, 123, 1, 128, 3, 126, 7, 130, 6, 134, 9, 135, 12, 136, 18, 136, 23, 134, 28, 132, 31, 128, 32, 124, 31, 124, 35, 121, 36, 115, 36, 112, 34, 109, 36, 105, 42, 99, 43, 98, 48, 96, 51, 89, 53, 70, 52, 63, 51, 61, 46, 62, 43, 67, 41, 47, 41, 44, 41, 31, 46, 24, 48, 17, 52, 3, 58, -15, 59, -28, 57, -35, 49, -36, 44, -42, 33, -48, 26, -57, 6, -59, -6, -59, -19, -53, -30, -49, -39, -43, -45, -32, -54, -14, -60)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 31
@@ -36,6 +39,9 @@ position = Vector2(126, 12)
 
 [node name="Marker2D3" type="Marker2D" parent="LaserStartPositions"]
 position = Vector2(126, 28)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ci27t")
 
 [connection signal="timeout" from="LaserDelay" to="." method="_on_laser_delay_timeout"]
 [connection signal="timeout" from="GrenadeDelay" to="." method="_on_grenade_delay_timeout"]
