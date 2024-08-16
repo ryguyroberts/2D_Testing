@@ -1,19 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5osvfqhob6i1"]
+[gd_scene load_steps=8 format=3 uid="uid://c5osvfqhob6i1"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_qc288"]
 [ext_resource type="PackedScene" uid="uid://dh5adl7sabwft" path="res://scenes/player/player.tscn" id="1_qvnsi"]
+[ext_resource type="Texture2D" uid="uid://c64342o81i1a3" path="res://resources/graphics/ground/stones.png" id="2_he7t5"]
+[ext_resource type="Texture2D" uid="uid://b73frokde35d7" path="res://resources/graphics/tilesets/outside_walls.png" id="3_n7wnl"]
 [ext_resource type="PackedScene" uid="uid://dx4vfodt1778c" path="res://scenes/gate/gate.tscn" id="3_tqs6t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlto6"]
+resource_name = "walls"
+texture = ExtResource("3_n7wnl")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dehaw"]
+tile_size = Vector2i(390, 390)
+sources/0 = SubResource("TileSetAtlasSource_xlto6")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_qc288")
 
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Soil" type="Sprite2D" parent="Ground"]
+texture_repeat = 2
+position = Vector2(494, 470)
+texture = ExtResource("2_he7t5")
+region_enabled = true
+region_rect = Rect2(-1447.19, -707.254, 4962.99, 3030.82)
+
+[node name="TileMap" type="TileMap" parent="Ground"]
+position = Vector2(2, 0)
+tile_set = SubResource("TileSet_dehaw")
+format = 2
+
 [node name="Gate" parent="." instance=ExtResource("3_tqs6t")]
 position = Vector2(510, -419)
+
+[node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_qvnsi")]
 position = Vector2(433, 539)
 
-[node name="Projectiles" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
