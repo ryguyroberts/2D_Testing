@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5osvfqhob6i1"]
+[gd_scene load_steps=11 format=3 uid="uid://c5osvfqhob6i1"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_qc288"]
 [ext_resource type="PackedScene" uid="uid://dh5adl7sabwft" path="res://scenes/player/player.tscn" id="1_qvnsi"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dx4vfodt1778c" path="res://scenes/gate/gate.tscn" id="3_tqs6t"]
 [ext_resource type="PackedScene" uid="uid://8qhm41ng7orn" path="res://scenes/objects/steam_vent.tscn" id="4_83bhg"]
 [ext_resource type="PackedScene" uid="uid://duk68rndr3mxs" path="res://scenes/objects/simple_light.tscn" id="5_tdypc"]
+[ext_resource type="PackedScene" uid="uid://c5eb4387nxjmq" path="res://scenes/objects/light_fan_animation.tscn" id="6_w0wg0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlto6"]
 resource_name = "walls"
@@ -49,6 +50,10 @@ position = Vector2(-201, 557)
 
 [node name="SimpleLight" parent="Ground" instance=ExtResource("5_tdypc")]
 position = Vector2(1293, 639)
+
+[node name="LightFanAnimation" parent="Ground" instance=ExtResource("6_w0wg0")]
+position = Vector2(-1144, 673)
+frame_progress = 0.269062
 
 [node name="Gate" parent="." instance=ExtResource("3_tqs6t")]
 position = Vector2(510, -419)
