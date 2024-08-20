@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5osvfqhob6i1"]
+[gd_scene load_steps=12 format=3 uid="uid://c5osvfqhob6i1"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_qc288"]
 [ext_resource type="PackedScene" uid="uid://dh5adl7sabwft" path="res://scenes/player/player.tscn" id="1_qvnsi"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8qhm41ng7orn" path="res://scenes/objects/steam_vent.tscn" id="4_83bhg"]
 [ext_resource type="PackedScene" uid="uid://duk68rndr3mxs" path="res://scenes/objects/simple_light.tscn" id="5_tdypc"]
 [ext_resource type="PackedScene" uid="uid://c5eb4387nxjmq" path="res://scenes/objects/light_fan_animation.tscn" id="6_w0wg0"]
+[ext_resource type="PackedScene" uid="uid://bys2e5nsw0lhl" path="res://scenes/objects/house.tscn" id="7_aq5ay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlto6"]
 resource_name = "walls"
@@ -55,6 +56,9 @@ position = Vector2(1293, 639)
 position = Vector2(-1144, 673)
 frame_progress = 0.269062
 
+[node name="House" parent="Ground" instance=ExtResource("7_aq5ay")]
+position = Vector2(-429, 1043)
+
 [node name="Gate" parent="." instance=ExtResource("3_tqs6t")]
 position = Vector2(510, -419)
 
@@ -67,6 +71,7 @@ position = Vector2(433, 539)
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 
+[connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]

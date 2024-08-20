@@ -24,3 +24,8 @@ func _on_player_laser(pos, direction):
 	laser.direction = direction
 	# Add laser instance to a Node2D
 	$Projectiles.add_child(laser)
+
+
+func _on_house_player_entered():
+	var tween = get_tree().create_tween()
+	tween.tween_property($Player/Camera2D,"zoom", Vector2(1,1), 1)
